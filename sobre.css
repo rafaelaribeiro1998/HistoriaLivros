@@ -1,0 +1,47 @@
+/* Estilos para o cabeçalho */
+header {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+}
+
+#logo {
+    width: 10%;
+}
+
+h1 {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+/* Estilos para o contêiner de conteúdo */
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.5;
+}
+
+/* Cor de fundo para o corpo da página */
+body {
+    background-color: white; /* Substitua pela cor desejada */
+}
+
+#search .button {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+
+/* Estilos para centralizar o conteúdo dentro do <nav> */
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh; /* Define a altura para centralizar verticalmente */
+}

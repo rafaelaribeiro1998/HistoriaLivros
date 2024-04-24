@@ -1,0 +1,68 @@
+
+/* Adicione isso ao seu arquivo historia.css */
+.custom-navbar-brand {
+  font-family: 'Sua Fonte', sans-serif;
+}
+
+/*Carousel*/
+.carousel-inner {
+  text-align: center; /* Centralize o conteúdo do carrossel */
+}
+
+.carousel-item img {
+  max-width: 100%; /* Garanta que as imagens não ultrapassem a largura do contêiner do carrossel */
+  height: auto; /* Faça com que a altura seja ajustada automaticamente para manter a proporção */
+  margin: auto; /* Centralize as imagens no contêiner do carrossel */
+}
+
+/* Organizar as imagens dos livros no item Produto*/
+.card-img-top {
+  width: 196px;
+  height: auto;
+}
+
+
+/*Rodapé*/
+
+/* Adicione este bloco de estilos ao seu arquivo CSS ou na tag <style> dentro do <head> */
+
+/* Estilo geral do rodapé */
+footer {
+background-color: #cbf6e8;
+color: #212529;
+}
+
+/* Estilo para os links do rodapé */
+.footer-links a {
+color: #212529;
+}
+
+.footer-links a:hover {
+color: #007bff;
+}
+
+/* Estilo para a seção de informações do rodapé */
+.footer-info h5 {
+color: #007bff;
+}
+
+/* Estilo para a seção de comunicação do rodapé */
+.footer-form {
+margin-top: 10px;
+}
+
+/* Estilo para a seção de direitos autorais e redes sociais do rodapé */
+.footer-copyright {
+border-top: 1px solid #dee2e6;
+padding-top: 10px;
+}
+
+.footer-social-icons svg {
+fill: #007bff;
+}
+
+.footer-social-icons a:hover svg {
+fill: #0056b3;
+}
+
+
