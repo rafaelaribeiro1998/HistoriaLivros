@@ -275,21 +275,68 @@
       alert(mensagem);
     }
   
+    function removerDoCarrinho(nomeLivro) {
+      const index = carrinho.findIndex(item => item.nome === nomeLivro);
+  
+      if (index !== -1) {
+        carrinho.splice(index, 1);
+        atualizarConteudoCarrinho();
+        atualizarCampoCarrinhoInput();
+        const mensagem = `${nomeLivro} removido do carrinho!`;
+        alert(mensagem);
+      } else {
+        alert("Este livro não está no carrinho.");
+      }
+    }
+  
+    function aumentarQuantidade(nomeLivro) {
+      const item = carrinho.find(item => item.nome === nomeLivro);
+      if (item) {
+        item.quantidade++;
+        atualizarConteudoCarrinho();
+        atualizarCampoCarrinhoInput();
+      }
+    }
+  
+    function diminuirQuantidade(nomeLivro) {
+      const item = carrinho.find(item => item.nome === nomeLivro);
+      if (item && item.quantidade > 1) {
+        item.quantidade--;
+        atualizarConteudoCarrinho();
+        atualizarCampoCarrinhoInput();
+      }
+    }
+  
     function atualizarConteudoCarrinho() {
       const corpoTabela = document.getElementById('corpoTabela');
       corpoTabela.innerHTML = '';
   
       if (carrinho.length === 0) {
-        corpoTabela.innerHTML = '<tr><td colspan="3">Carrinho vazio.</td></tr>';
+        corpoTabela.innerHTML = '<tr><td colspan="4">Carrinho vazio.</td></tr>';
       } else {
         carrinho.forEach(item => {
           const linha = corpoTabela.insertRow();
           const colunaNome = linha.insertCell(0);
           const colunaPreco = linha.insertCell(1);
           const colunaQuantidade = linha.insertCell(2);
+          const colunaRemover = linha.insertCell(3);
+          const colunaAumentar = linha.insertCell(4); // Adicionando coluna para aumentar quantidade
+          const colunaDiminuir = linha.insertCell(5); // Adicionando coluna para diminuir quantidade
           colunaNome.textContent = item.nome;
           colunaPreco.textContent = `R$ ${item.preco.toFixed(2)}`;
           colunaQuantidade.textContent = item.quantidade;
+          const botaoRemover = document.createElement('button');
+          botaoRemover.textContent = 'Remover';
+          botaoRemover.addEventListener('click', () => removerDoCarrinho(item.nome));
+          colunaRemover.appendChild(botaoRemover);
+          const botaoAumentar = document.createElement('button'); // Criando botão para aumentar quantidade
+          botaoAumentar.textContent = '+';
+          botaoAumentar.addEventListener('click', () => aumentarQuantidade(item.nome)); // Adicionando evento para aumentar quantidade
+          colunaAumentar.appendChild(botaoAumentar); // Adicionando botão à célula de aumentar quantidade
+          const botaoDiminuir = document.createElement('button'); // Criando botão para diminuir quantidade
+          botaoDiminuir.textContent = '-';
+          botaoDiminuir.addEventListener('click', () => diminuirQuantidade(item.nome)); // Adicionando evento para diminuir quantidade
+          colunaDiminuir.appendChild(botaoDiminuir); // Adicionando botão à célula de diminuir quantidade
         });
   
         const totalCompra = document.getElementById('totalCompra');
@@ -302,23 +349,20 @@
     }
   
     // Função para finalizar a compra (chamada ao enviar o formulário)
-  function finalizarCompra() {
+    function finalizarCompra() {
       // Atualiza o campo oculto com todos os campos do formulário e do carrinho
       document.getElementById('carrinhoInput').value = JSON.stringify(carrinho);
       document.getElementById('checkoutForm').submit();
-  }
+    }
   
-  
-  
-  // Função chamada ao clicar em "Continuar Compra" no modal
-  function continuarCompra() {
-    // Aqui você pode adicionar lógica adicional se necessário
-    // Redirecionando para a página de pagamento
-    window.location.href = 'http://localhost/Historia/Historia/Checkout.php';
-  }
-  
-  
+    // Função chamada ao clicar em "Continuar Compra" no modal
+    function continuarCompra() {
+      // Aqui você pode adicionar lógica adicional se necessário
+      // Redirecionando para a página de pagamento
+      window.location.href = 'http://localhost/Historia/Historia/Checkout.php';
+    }
   </script>
+  
   
       
   

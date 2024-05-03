@@ -1,8 +1,8 @@
 <?php
 
-$usuario = "id21704484_historia";
-$senha = "#Ahistoria2023";
-$database = "id21704484_livriaria";
+$usuario = "root";
+$senha = "BemVindo!";
+$database = "login";
 $host = "localhost";
 
 $mysqli = new mysqli($host, $usuario, $senha, $database);

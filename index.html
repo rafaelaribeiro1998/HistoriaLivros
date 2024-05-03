@@ -11,7 +11,6 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="historia.css">
 </head>
-
 <body>
     <!-- Barra de Navegação -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -25,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Início</a>
+                        <a class="nav-link active" aria-current="page" href="index.php">Início</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="sobre.html">Sobre</a>
@@ -111,49 +110,47 @@
             </div>
         </div>
     </nav>
-
-    <!-- Modal de Carrinho -->
+<!-- Modal de Carrinho -->
 <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-    <form id="checkoutForm" method="post" action="checkout.php">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="cartModalLabel">Carrinho de Compras</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body" id="carrinhoConteudo">
-            <!-- Conteúdo do Carrinho de Compras aqui -->
-            <input type="hidden" id="carrinhoInput" name="carrinho" value="">
-            <div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Nome do Livro</th>
-                    <th>Preço</th>
-                    <th>Quantidade</th>
-                  </tr>
-                </thead>
-                <tbody id="corpoTabela">
-                  <!-- Linhas da tabela geradas dinamicamente pelo JavaScript -->
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="2">Total da Compra</td>
-                    <td id="totalCompra">R$ 0,00</td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-dark" onclick="finalizarCompra()">Finalizar Compra</button>
+  <form id="checkoutForm" method="post" action="checkout.php">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cartModalLabel">Carrinho de Compras</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="carrinhoConteudo">
+          <!-- Conteúdo do Carrinho de Compras aqui -->
+          <input type="hidden" id="carrinhoInput" name="carrinho" value="">
+          <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nome do Livro</th>
+                  <th>Preço</th>
+                  <th>Quantidade</th>
+                </tr>
+              </thead>
+              <tbody id="corpoTabela">
+                <!-- Linhas da tabela geradas dinamicamente pelo JavaScript -->
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2">Total da Compra</td>
+                  <td id="totalCompra">R$ 0,00</td>
+                </tr>
+              </tfoot>
+            </table>
           </div>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-dark" onclick="finalizarCompra()">Finalizar Compra</button>
+        </div>
       </div>
-    </form>
-  </div>
-
+    </div>
+  </form>
+</div>
 <!--Carrosel-->
 
 
@@ -194,9 +191,9 @@
                     <img src="img/A paciente silenciosa.png" class="card-img-top img-fluid mx-auto" alt="A Paciente Silenciosa">
                     <div class="card-body">
                         <h5 class="card-title">A Paciente Silenciosa</h5>
-                        <p class="card-text">Descrição do Livro 1.</p>
-                        <p class="card-text"><strong>Preço: R$ 29,99</strong></p>
-                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('A paciente silenciosa', 29.99)">
+                        <p class="card-text">Autor:  Alex Michaelides</p>
+                        <p class="card-text"><strong>Preço: R$ 39,99</strong></p>
+                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('A paciente silenciosa', 39.99)">
                             Adicionar ao Carrinho
                         </button>
                         
@@ -209,9 +206,9 @@
                     <img src="img/A Rebelde do Deserto.jpg" class="card-img-top img-fluid mx-auto" alt="A Rebelde do Deserto">
                     <div class="card-body">
                         <h5 class="card-title">A Rebelde do Deserto</h5>
-                        <p class="card-text">Descrição do Livro 2.</p>
-                        <p class="card-text"><strong>Preço: R$ 29,99</strong></p></p>
-                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('A Rebelde do Deserto', 29.99)">
+                        <p class="card-text">Autor: Alwyn Hamilton</p>
+                        <p class="card-text"><strong>Preço: R$ 38,99</strong></p></p>
+                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('A Rebelde do Deserto', 38.99)">
                             Adicionar ao Carrinho
                         </button>
                     </div>
@@ -223,9 +220,9 @@
                     <img src="img/Box-harry.jpg" class="card-img-top img-fluid mx-auto" alt="Box azul Harry Potter">
                     <div class="card-body">
                         <h5 class="card-title">Box azul Harry Potter</h5>
-                        <p class="card-text">Descrição do Livro 2.</p>
-                        <p class="card-text"><strong>Preço: R$ 180,00</strong></p></p>
-                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('Box Azul Harry Potter', 180.00)">
+                        <p class="card-text">Autor: J.K. Rowling</p>
+                        <p class="card-text"><strong>Preço: R$ 200,00</strong></p></p>
+                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('Box Azul Harry Potter', 200.00)">
                             Adicionar ao Carrinho
                         </button>
                     </div>
@@ -234,12 +231,12 @@
     
             <div class="col-md-3 mb-4">
                 <div class="card">
-                    <img src="img/Lady Killers  Assassinas em Séri.jpg" class="card-img-top img-fluid mx-auto" alt="Lady Killers  Assassinas em série">
+                    <img src="img/Lady Killers  Assassinas em Séri (1).jpg" class="card-img-top img-fluid mx-auto" alt="Lady Killers  Assassinas em série">
                     <div class="card-body">
                         <h5 class="card-title">Lady Killers  Assassinas em Série</h5>
-                        <p class="card-text">Descrição do Livro 2.</p>
-                        <p class="card-text"><strong>Preço: R$ 29,99</strong></p></p>
-                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('Lady Killers  Assassinas em Série', 29.99)">
+                        <p class="card-text">Autor:  Tori Telfer</p>
+                        <p class="card-text"><strong>Preço: R$ 58,99</strong></p></p>
+                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('Lady Killers  Assassinas em Série', 58.00)">
                             Adicionar ao Carrinho
                         </button>
                     </div>
@@ -251,9 +248,9 @@
                     <img src="img/Mentes Sombrias 2.png" class="card-img-top img-fluid mx-auto" alt="Mentes Sombrias">
                     <div class="card-body">
                         <h5 class="card-title">Mentes Sombrias</h5>
-                        <p class="card-text">Descrição do Livro 2.</p>
+                        <p class="card-text">Autor:  Alexandra Bracken</p>
                         <p class="card-text"><strong>Preço: R$ 29,99</strong></p></p>
-                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('Mentes Sombrias', 19.99)">
+                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('Mentes Sombrias', 29.99)">
                             Adicionar ao Carrinho
                         </button>
                     </div>
@@ -262,12 +259,12 @@
     
             <div class="col-md-3 mb-4">
                 <div class="card">
-                    <img src="img/Personalidades Perigosas 1.png" class="card-img-top img-fluid mx-auto" alt="Personalidades Perigosas">
+                    <img src="img/Personalidades Perigosas.jpg" class="card-img-top img-fluid mx-auto" alt="Personalidades Perigosas">
                     <div class="card-body">
-                        <h5 class="card-title">Personalidades Perigosas/h5>
-                        <p class="card-text">Descrição do Livro 2.</p>
-                        <p class="card-text"><strong>Preço: R$ 29,99</strong></p></p>
-                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('Personalidades Perigosas', 59.99)">
+                        <h5 class="card-title">Personalidades Perigosas</h5>
+                        <p class="card-text">Autor: Joe Navarro</p>
+                        <p class="card-text"><strong>Preço: R$ 70,00</strong></p></p>
+                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('Personalidades Perigosas', 70.00)">
                             Adicionar ao Carrinho
                         </button>
                     </div>
@@ -276,12 +273,12 @@
     
             <div class="col-md-3 mb-4">
                 <div class="card">
-                    <img src="img/Serial Killers. Anatomia do Mal.png" class="card-img-top img-fluid mx-auto" alt="Serial Killers. Anatomia do Mal">
+                    <img src="img/Serial Killers Anatomia do Mal.jpg" class="card-img-top img-fluid mx-auto" alt="Serial Killers. Anatomia do Mal">
                     <div class="card-body">
                         <h5 class="card-title">Serial Killers. Anatomia do Mal</h5>
-                        <p class="card-text">Descrição do Livro 2.</p>
-                        <p class="card-text"><strong>Preço: R$ 29,99</strong></p></p>
-                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('Serial Killers. Anatomia do Mal', 39.99)">
+                        <p class="card-text">Autor:  Harold Schrechter</p>
+                        <p class="card-text"><strong>Preço: R$ 65,00</strong></p></p>
+                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('Serial Killers. Anatomia do Mal', 65.00)">
                             Adicionar ao Carrinho
                         </button>
                     </div>
@@ -293,9 +290,9 @@
                     <img src="img/Textos para tocar cicatrizes 1.jpg" class="card-img-top img-fluid mx-auto" alt="Textos para tocar cicatrizes 1">
                     <div class="card-body">
                         <h5 class="card-title">Textos para tocar cicatrizes</h5>
-                        <p class="card-text">Descrição do Livro 2.</p>
-                        <p class="card-text"><strong>Preço: R$ 29,99</strong></p></p>
-                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('Textos para tocar cicatrizes 1.', 19.99)">
+                        <p class="card-text">Autor:  Igor Pires</p>
+                        <p class="card-text"><strong>Preço: R$ 40,00</strong></p></p>
+                        <button class="btn btn-outline-dark" onclick="adicionarAoCarrinho('Textos para tocar cicatrizes 1.', 40.00)">
                             Adicionar ao Carrinho
                         </button>
                     </div>
@@ -311,91 +308,117 @@
 
 <!-- Script para adicionar ao carrinho e mostrar alerta -->
 <script>
-    let carrinho = [];
-
-    function adicionarAoCarrinho(nomeLivro, precoLivro) {
-        // Verifica se o livro já está no carrinho
-        const livroExistente = carrinho.find(item => item.nome === nomeLivro);
-
-        if (livroExistente) {
-            // Se o livro já estiver no carrinho, incrementa a quantidade
-            livroExistente.quantidade++;
-        } else {
-            // Se o livro não estiver no carrinho, adiciona um novo item
-            carrinho.push({ nome: nomeLivro, preco: precoLivro, quantidade: 1 });
-        }
-
-        // Atualizando o conteúdo do carrinho no modal
-        atualizarConteudoCarrinho();
-
-        // Exibindo o alerta (opcional)
-        const mensagem = `${nomeLivro} adicionado ao carrinho!`;
-        alert(mensagem);
-
-        // Redirecionando para o carrinho após clicar em "OK"
-        window.location.href = '#cartModal';
-
-        // Exibindo o carrinho no console para fins de depuração
-        console.log("Carrinho:", carrinho);
-    }
-
-    function atualizarConteudoCarrinho() {
-        const carrinhoConteudo = document.getElementById('carrinhoConteudo');
-        carrinhoConteudo.innerHTML = '';
-
-        if (carrinho.length === 0) {
-            carrinhoConteudo.innerHTML = '<p>Carrinho vazio.</p>';
-        } else {
-            // Criando uma tabela simples para exibir os itens do carrinho
-            const tabela = document.createElement('table');
-            tabela.classList.add('table');
-
-            // Adicionando cabeçalho da tabela
-            const cabecalho = tabela.createTHead();
-            const linhaCabecalho = cabecalho.insertRow();
-            const colunaNome = linhaCabecalho.insertCell(0);
-            const colunaPreco = linhaCabecalho.insertCell(1);
-            const colunaQuantidade = linhaCabecalho.insertCell(2);
-            colunaNome.textContent = 'Nome do Livro';
-            colunaPreco.textContent = 'Preço';
-            colunaQuantidade.textContent = 'Quantidade';
-
-            // Adicionando linhas com itens do carrinho
-            const corpoTabela = tabela.createTBody();
-            carrinho.forEach(item => {
-                const linha = corpoTabela.insertRow();
-                const colunaNome = linha.insertCell(0);
-                const colunaPreco = linha.insertCell(1);
-                const colunaQuantidade = linha.insertCell(2);
-                colunaNome.textContent = item.nome;
-                colunaPreco.textContent = `R$ ${item.preco.toFixed(2)}`;
-                colunaQuantidade.textContent = item.quantidade;
-            });
-
-            // Adicionando a linha do total
-            const linhaTotal = corpoTabela.insertRow();
-            const colunaTotalLabel = linhaTotal.insertCell(0);
-            const colunaTotalValor = linhaTotal.insertCell(1);
-            const colunaTotalQuantidade = linhaTotal.insertCell(2);
-            colunaTotalLabel.textContent = 'Total da Compra';
-            colunaTotalValor.textContent = `R$ ${calcularTotal().toFixed(2)}`;
-            colunaTotalQuantidade.textContent = '';
-
-            carrinhoConteudo.appendChild(tabela);
-        }
-    }
-
+    var carrinho = [];
+  
     function calcularTotal() {
-        return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0);
+      return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0);
     }
-
+  
+    function adicionarAoCarrinho(nomeLivro, precoLivro) {
+      const livroExistente = carrinho.find(item => item.nome === nomeLivro);
+  
+      if (livroExistente) {
+        livroExistente.quantidade++;
+      } else {
+        carrinho.push({ nome: nomeLivro, preco: precoLivro, quantidade: 1 });
+      }
+  
+      atualizarConteudoCarrinho();
+      atualizarCampoCarrinhoInput();
+  
+      const mensagem = `${nomeLivro} adicionado ao carrinho!`;
+      alert(mensagem);
+    }
+  
+    function removerDoCarrinho(nomeLivro) {
+      const index = carrinho.findIndex(item => item.nome === nomeLivro);
+  
+      if (index !== -1) {
+        carrinho.splice(index, 1);
+        atualizarConteudoCarrinho();
+        atualizarCampoCarrinhoInput();
+        const mensagem = `${nomeLivro} removido do carrinho!`;
+        alert(mensagem);
+      } else {
+        alert("Este livro não está no carrinho.");
+      }
+    }
+  
+    function aumentarQuantidade(nomeLivro) {
+      const item = carrinho.find(item => item.nome === nomeLivro);
+      if (item) {
+        item.quantidade++;
+        atualizarConteudoCarrinho();
+        atualizarCampoCarrinhoInput();
+      }
+    }
+  
+    function diminuirQuantidade(nomeLivro) {
+      const item = carrinho.find(item => item.nome === nomeLivro);
+      if (item && item.quantidade > 1) {
+        item.quantidade--;
+        atualizarConteudoCarrinho();
+        atualizarCampoCarrinhoInput();
+      }
+    }
+  
+    function atualizarConteudoCarrinho() {
+      const corpoTabela = document.getElementById('corpoTabela');
+      corpoTabela.innerHTML = '';
+  
+      if (carrinho.length === 0) {
+        corpoTabela.innerHTML = '<tr><td colspan="4">Carrinho vazio.</td></tr>';
+      } else {
+        carrinho.forEach(item => {
+          const linha = corpoTabela.insertRow();
+          const colunaNome = linha.insertCell(0);
+          const colunaPreco = linha.insertCell(1);
+          const colunaQuantidade = linha.insertCell(2);
+          const colunaRemover = linha.insertCell(3);
+          const colunaAumentar = linha.insertCell(4); // Adicionando coluna para aumentar quantidade
+          const colunaDiminuir = linha.insertCell(5); // Adicionando coluna para diminuir quantidade
+          colunaNome.textContent = item.nome;
+          colunaPreco.textContent = `R$ ${item.preco.toFixed(2)}`;
+          colunaQuantidade.textContent = item.quantidade;
+          const botaoRemover = document.createElement('button');
+          botaoRemover.textContent = 'Remover';
+          botaoRemover.addEventListener('click', () => removerDoCarrinho(item.nome));
+          colunaRemover.appendChild(botaoRemover);
+          const botaoAumentar = document.createElement('button'); // Criando botão para aumentar quantidade
+          botaoAumentar.textContent = '+';
+          botaoAumentar.addEventListener('click', () => aumentarQuantidade(item.nome)); // Adicionando evento para aumentar quantidade
+          colunaAumentar.appendChild(botaoAumentar); // Adicionando botão à célula de aumentar quantidade
+          const botaoDiminuir = document.createElement('button'); // Criando botão para diminuir quantidade
+          botaoDiminuir.textContent = '-';
+          botaoDiminuir.addEventListener('click', () => diminuirQuantidade(item.nome)); // Adicionando evento para diminuir quantidade
+          colunaDiminuir.appendChild(botaoDiminuir); // Adicionando botão à célula de diminuir quantidade
+        });
+  
+        const totalCompra = document.getElementById('totalCompra');
+        totalCompra.textContent = `R$ ${calcularTotal().toFixed(2)}`;
+      }
+    }
+  
+    function atualizarCampoCarrinhoInput() {
+      document.getElementById('carrinhoInput').value = JSON.stringify(carrinho);
+    }
+  
+    // Função para finalizar a compra (chamada ao enviar o formulário)
     function finalizarCompra() {
-        // Lógica para finalizar a compra (pode ser adicionada conforme necessário)
-        alert('Compra Continuada! Redirecionando para a página de Checkout.');
-        // Redirecionando para a página de pagamento
-        window.location.href = 'http://localhost/Historia%20dos%20Livros/Checkout.php';
+      // Atualiza o campo oculto com todos os campos do formulário e do carrinho
+      document.getElementById('carrinhoInput').value = JSON.stringify(carrinho);
+      document.getElementById('checkoutForm').submit();
     }
-</script>
+  
+    // Função chamada ao clicar em "Continuar Compra" no modal
+    function continuarCompra() {
+      // Aqui você pode adicionar lógica adicional se necessário
+      // Redirecionando para a página de pagamento
+      window.location.href = 'http://localhost/Historia/Historia/Checkout.php';
+    }
+  </script>
+  
+  
 
     
 
@@ -406,50 +429,58 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Rodapé -->
-    <footer>
+    <footer class="py-5">
         <div class="container">
-            <footer class="py-5">
-                <div class="row">
-                    <div class="col-6 col-md-2 mb-3">
-                        <h5>Informações</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Política de Privacidade</a></li>
-                            <li class="nav-item mb-2"><a href="https://drive.google.com/file/d/1tqN5RdHqSaeAozeOH-Gms_3EMqLdgXc4/view?usp=sharing" class="nav-link p-0 text-body-secondary">Política de Segurança</a>
-                            </li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Política de Troca</a>
-                            </li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Prazos de Entrega e Procedimentos</a></li>
-                        </ul>
-                    </div>
-
-                    
-
-                    <div class="col-md-5 offset-md-1 mb-3">
-                        <form>
-                            <h5>Comunique-se Conosco</h5>
-                            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                                <label for="newsletter1" class="visually-hidden">Endereço de Email</label>
-                                <input id="newsletter1" type="text" class="form-control" placeholder="Endereço de Email">
-                                <button class="btn btn-dark" type="button">Escreva-se</button>
-                            </div>
-                        </form>
-                        <br>
-                        <h5><a href="https://www.google.com/maps/place/Senac+Cidade+Alta/@-5.7826882,-35.2090354,17z/data=!3m1!4b1!4m6!3m5!1s0x7b3001383ab2847:0x912a2e126db35b70!8m2!3d-5.7826935!4d-35.2064605!16s%2Fg%2F1tf364xz?entry=ttu" target="_blank">Nosso Endereço</a></h5>
-                    </div>
-                </div>
-
-                <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-                    <p>&copy; 2023 A Historia Dos Livros, Inc. Todos os direitos reservados.</p>
-                    <ul class="list-unstyled d-flex">
-                        <li class="ms-3"><a class="link-body-emphasis" href="https://twitter.com/HistoriaDosLiv"><svg class="bi" width="24" height="24">
-                                    <use xlink:href="#twitter" /></svg></a></li>
-                        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
-                                    <use xlink:href="#instagram" /></svg></a></li>
-                        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
-                                    <use xlink:href="#facebook" /></svg></a></li>
+            <div class="row">
+                <!-- Seção de Informações -->
+                <div class="col-12 col-md-3 mb-4">
+                    <h5>Informações</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="https://drive.google.com/file/d/1o5VJ065UVcA9imC9hmbi8jV_PQ0qChyb/view?usp=sharing" class="nav-link p-0 text-body-secondary">Política de Privacidade</a></li>
+                        <li class="nav-item mb-2"><a href="https://drive.google.com/file/d/1ZCWzCTto2xO8JSy7YrGx8_A07UYOl-xs/view?usp=sharing" class="nav-link p-0 text-body-secondary">Política de Segurança</a></li>
+                        <li class="nav-item mb-2"><a href="https://drive.google.com/file/d/12xL0RIUbOLrXA8CnQCXs63bNcoNOinIW/view?usp=sharing" class="nav-link p-0 text-body-secondary">Política de Troca</a></li>
+                        <li class="nav-item mb-2"><a href="https://drive.google.com/file/d/19tcaCs4RaoDytLTcJtZq75S6k-2uM4CB/view?usp=sharing" class="nav-link p-0 text-body-secondary">Prazos de Entrega e Procedimentos</a></li>
                     </ul>
                 </div>
-            </footer>
+    
+                <!-- Seção de Contato -->
+                <div class="col-12 col-md-4 mb-4">
+                    <h5>Contato</h5>
+                    <p><strong>Suporte:</strong> <a href="mailto:livrariaahistoriadoslivros2023@gmail.com">livrariaahistoriadoslivros2023@gmail.com</a></p>
+                    <p><strong><u>Atendimento:</u></strong> <u>de segunda a sexta-feira, das 8h às 17h (exceto feriados)</u>.</p>
+                    <p><strong><a href="https://www.google.com/maps/place/Senac+Cidade+Alta/@-5.7826882,-35.2090354,17z/data=!3m1!4b1!4m6!3m5!1s0x7b3001383ab2847:0x912a2e126db35b70!8m2!3d-5.7826935!4d-35.2064605!16s%2Fg%2F1tf364xz?entry=ttu" target="_blank">Nosso Endereço</a></strong></p>
+                </div>
+    
+                <!-- Seção de Formas de Pagamento -->
+                <div class="col-12 col-md-3 mb-4">
+                    <h5>Formas de Pagamento</h5>
+                    <div class="d-flex align-items-center gap-2">
+                        <!-- Ícones de pagamento -->
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="bi bi-credit-card-2-front fs-4"></i>
+                            <span>Cartão de Crédito</span>
+                        </div>
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="bi bi-bank2 fs-4"></i>
+                            <span>Boleto Bancário</span>
+                        </div>
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="bi bi-paypal fs-4"></i>
+                            <span>PayPal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Rodapé Inferior -->
+            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 border-top">
+                <p class="mb-0 text-body-secondary">&copy; 2023 A História dos Livros, Inc. Todos os direitos reservados.</p>
+                <ul class="list-unstyled d-flex mb-0">
+                    <li class="ms-3"><a class="text-body-secondary" href="https://twitter.com/HistoriaDosLiv"><i class="bi bi-twitter fs-4"></i></a></li>
+                    <li class="ms-3"><a class="text-body-secondary" href="https://www.instagram.com/ahistoriadoslivros/"><i class="bi bi-instagram fs-4"></i></a></li>
+                    <li class="ms-3"><a class="text-body-secondary" href="https://www.facebook.com/ahistoriadoslivros/"><i class="bi bi-facebook fs-4"></i></a></li>
+                </ul>
+            </div>
         </div>
     </footer>
 

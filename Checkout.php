@@ -63,6 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['carrinho'])) {
       </div>
     </div>
 
+    <!-- Campos para os itens do carrinho -->
+    <div id="carrinhoFields"></div>
+
     <!-- Adicione um campo oculto para enviar dados do carrinho -->
     <input type="hidden" id="carrinhoInput" name="carrinho" value="">
 
@@ -101,74 +104,85 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['carrinho'])) {
       </div>
     </div>
 
-    <!-- ... (outros campos ou elementos do formulário) ... -->
-
     <!-- Botão de Submit -->
     <button type="submit" class="btn btn-dark">Finalizar Compra</button>
   </form>
 </div>
+
 <script>
+  // Definir carrinho como uma matriz vazia se não estiver definido
+  var carrinho = carrinho || [];
+
+  // Adiciona os campos para cada item do carrinho dentro do formulário
+  function adicionarCamposCarrinho() {
+    var carrinhoFields = document.getElementById('carrinhoFields');
+    carrinhoFields.innerHTML = '';
+
+    carrinho.forEach(item => {
+      var divFormGroup = document.createElement('div');
+      divFormGroup.classList.add('form-group');
+
+      var label = document.createElement('label');
+      label.textContent = 'Quantidade de ' + item.nome;
+
+      var input = document.createElement('input');
+      input.type = 'number';
+      input.classList.add('form-control');
+      input.value = item.quantidade;
+      input.id = 'carrinho-' + item.nome;
+      input.name = 'carrinho-' + item.nome;
+
+      divFormGroup.appendChild(label);
+      divFormGroup.appendChild(input);
+      carrinhoFields.appendChild(divFormGroup);
+    });
+  }
+
+  // Chama a função para adicionar os campos do carrinho inicialmente
+  adicionarCamposCarrinho();
+
   function handlePaymentMethodChange() {
-    var paymentMethod = document.getElementById('paymentMethod').value;
-    var cardFields = document.getElementById('cardFields');
-    var pixFields = document.getElementById('pixFields');
+    cardFields.style.display = 'none';
+    pixFields.style.display = 'none';
 
-    cardFields.style.display = paymentMethod === 'card' ? 'block' : 'none';
-    pixFields.style.display = paymentMethod === 'pix' ? 'block' : 'none';
-  }
-</script>
+    if (this.value === 'card') {
+      cardFields.style.display = 'block';
+    } else if (this.value === 'pix') {
+      pixFields.style.display = 'block';
+    }
 
+    // Atualiza o campo oculto com todos os campos do formulário e do carrinho
+    document.getElementById('carrinhoInput').value = JSON.stringify({
+      fullName: document.getElementById('fullName').value,
+      email: document.getElementById('email').value,
+      address: document.getElementById('endereco').value,
+      city: document.getElementById('cidade').value,
+      zipCode: document.getElementById('zipCode').value,
+      paymentMethod: getSelectedPaymentMethod(),
+      cardNumber: document.getElementById('cardNumber').value,
+      expirationDate: document.getElementById('expirationDate').value,
+      cvv: document.getElementById('cvv').value,
+      pixKey: document.getElementById('pixKey').value,
+      carrinho: carrinho
+    });
 
-<script>
- var paymentMethod = document.getElementById('paymentMethod').value;
-
-// Definir carrinho como uma matriz vazia se não estiver definido
-var carrinho = carrinho || [];
-
-function handlePaymentMethodChange() {
-  cardFields.style.display = 'none';
-  pixFields.style.display = 'none';
-
-  if (this.value === 'card') {
-    cardFields.style.display = 'block';
-  } else if (this.value === 'pix') {
-    pixFields.style.display = 'block';
-  }
-
-  // Atualiza o campo oculto com todos os campos do formulário e do carrinho
-  document.getElementById('carrinhoInput').value = JSON.stringify({
-    fullName: document.getElementById('fullName').value,
-    email: document.getElementById('email').value,
-    address: document.getElementById('endereco').value,
-    city: document.getElementById('cidade').value,
-    zipCode: document.getElementById('zipCode').value,
-    paymentMethod: getSelectedPaymentMethod(),
-    cardNumber: document.getElementById('cardNumber').value,
-    expirationDate: document.getElementById('expirationDate').value,
-    cvv: document.getElementById('cvv').value,
-    pixKey: document.getElementById('pixKey').value,
-    carrinho: carrinho
-  });
-
-  if (document.getElementById('paymentMethod').value === '') {
-    throw new Error('O campo "paymentMethod" está vazio.');
-  }
-}
-
-function getSelectedPaymentMethod() {
-  var paymentMethods = document.getElementsByName('paymentMethod');
-  for (var i = 0; i < paymentMethods.length; i++) {
-    if (paymentMethods[i].checked) {
-      return paymentMethods[i].value;
+    if (document.getElementById('paymentMethod').value === '') {
+      throw new Error('O campo "paymentMethod" está vazio.');
     }
   }
-  return ''; // Retorna vazio se nenhum método estiver selecionado
-}
 
-// Chame a função inicialmente para garantir que os campos estejam configurados corretamente
-handlePaymentMethodChange();
+  function getSelectedPaymentMethod() {
+    var paymentMethods = document.getElementsByName('paymentMethod');
+    for (var i = 0; i < paymentMethods.length; i++) {
+      if (paymentMethods[i].checked) {
+        return paymentMethods[i].value;
+      }
+    }
+    return ''; // Retorna vazio se nenhum método estiver selecionado
+  }
 
-
+  // Chama a função inicialmente para garantir que os campos estejam configurados corretamente
+  handlePaymentMethodChange();
 </script>
 
 <!-- jQuery -->

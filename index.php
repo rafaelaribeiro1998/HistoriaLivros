@@ -308,72 +308,119 @@
 
 <!-- Script para adicionar ao carrinho e mostrar alerta -->
 <script>
-  var carrinho = [];
+    var carrinho = [];
 
-  function calcularTotal() {
-    return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0);
-  }
-
-  function adicionarAoCarrinho(nomeLivro, precoLivro) {
-    const livroExistente = carrinho.find(item => item.nome === nomeLivro);
-
-    if (livroExistente) {
-      livroExistente.quantidade++;
-    } else {
-      carrinho.push({ nome: nomeLivro, preco: precoLivro, quantidade: 1 });
+    function calcularTotal() {
+        return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0);
     }
 
-    atualizarConteudoCarrinho();
-    atualizarCampoCarrinhoInput();
+    function adicionarAoCarrinho(nomeLivro, precoLivro) {
+        const livroExistente = carrinho.find(item => item.nome === nomeLivro);
 
-    const mensagem = `${nomeLivro} adicionado ao carrinho!`;
-    alert(mensagem);
-  }
+        if (livroExistente) {
+            livroExistente.quantidade++;
+        } else {
+            carrinho.push({ nome: nomeLivro, preco: precoLivro, quantidade: 1 });
+        }
 
-  function atualizarConteudoCarrinho() {
-    const corpoTabela = document.getElementById('corpoTabela');
-    corpoTabela.innerHTML = '';
+        atualizarConteudoCarrinho();
+        atualizarCampoCarrinhoInput();
 
-    if (carrinho.length === 0) {
-      corpoTabela.innerHTML = '<tr><td colspan="3">Carrinho vazio.</td></tr>';
-    } else {
-      carrinho.forEach(item => {
-        const linha = corpoTabela.insertRow();
-        const colunaNome = linha.insertCell(0);
-        const colunaPreco = linha.insertCell(1);
-        const colunaQuantidade = linha.insertCell(2);
-        colunaNome.textContent = item.nome;
-        colunaPreco.textContent = `R$ ${item.preco.toFixed(2)}`;
-        colunaQuantidade.textContent = item.quantidade;
-      });
-
-      const totalCompra = document.getElementById('totalCompra');
-      totalCompra.textContent = `R$ ${calcularTotal().toFixed(2)}`;
+        const mensagem = `${nomeLivro} adicionado ao carrinho!`;
+        alert(mensagem);
     }
-  }
 
-  function atualizarCampoCarrinhoInput() {
-    document.getElementById('carrinhoInput').value = JSON.stringify(carrinho);
-  }
+    function removerDoCarrinho(nomeLivro) {
+        const index = carrinho.findIndex(item => item.nome === nomeLivro);
 
-  // Função para finalizar a compra (chamada ao enviar o formulário)
-function finalizarCompra() {
+        if (index !== -1) {
+            carrinho.splice(index, 1);
+            atualizarConteudoCarrinho();
+            atualizarCampoCarrinhoInput();
+            const mensagem = `${nomeLivro} removido do carrinho!`;
+            alert(mensagem);
+        } else {
+            alert("Este livro não está no carrinho.");
+        }
+    }
+
+    function aumentarQuantidade(nomeLivro) {
+        const item = carrinho.find(item => item.nome === nomeLivro);
+        if (item) {
+            item.quantidade++;
+            atualizarConteudoCarrinho();
+            atualizarCampoCarrinhoInput();
+        }
+    }
+
+    function diminuirQuantidade(nomeLivro) {
+        const item = carrinho.find(item => item.nome === nomeLivro);
+        if (item && item.quantidade > 1) {
+            item.quantidade--;
+            atualizarConteudoCarrinho();
+            atualizarCampoCarrinhoInput();
+        }
+    }
+
+    function atualizarConteudoCarrinho() {
+        const corpoTabela = document.getElementById('corpoTabela');
+        corpoTabela.innerHTML = '';
+
+        if (carrinho.length === 0) {
+            corpoTabela.innerHTML = '<tr><td colspan="4">Carrinho vazio.</td></tr>';
+        } else {
+            carrinho.forEach(item => {
+                const linha = corpoTabela.insertRow();
+                const colunaNome = linha.insertCell(0);
+                const colunaPreco = linha.insertCell(1);
+                const colunaQuantidade = linha.insertCell(2);
+                const colunaRemover = linha.insertCell(3);
+                const colunaAumentar = linha.insertCell(4);
+                const colunaDiminuir = linha.insertCell(5);
+                colunaNome.textContent = item.nome;
+                colunaPreco.textContent = `R$ ${item.preco.toFixed(2)}`;
+                colunaQuantidade.textContent = item.quantidade;
+                const botaoRemover = document.createElement('button');
+                botaoRemover.textContent = 'Remover';
+                botaoRemover.addEventListener('click', () => removerDoCarrinho(item.nome));
+                colunaRemover.appendChild(botaoRemover);
+                const botaoAumentar = document.createElement('button');
+                botaoAumentar.textContent = '+';
+                botaoAumentar.addEventListener('click', () => aumentarQuantidade(item.nome));
+                colunaAumentar.appendChild(botaoAumentar);
+                const botaoDiminuir = document.createElement('button');
+                botaoDiminuir.textContent = '-';
+                botaoDiminuir.addEventListener('click', () => diminuirQuantidade(item.nome));
+                colunaDiminuir.appendChild(botaoDiminuir);
+            });
+
+            const totalCompra = document.getElementById('totalCompra');
+            totalCompra.textContent = `R$ ${calcularTotal().toFixed(2)}`;
+        }
+    }
+
+    function atualizarCampoCarrinhoInput() {
+        document.getElementById('carrinhoInput').value = JSON.stringify(carrinho);
+    }
+
+    // Função para finalizar a compra (chamada ao enviar o formulário)
+    function finalizarCompra() {
     // Atualiza o campo oculto com todos os campos do formulário e do carrinho
     document.getElementById('carrinhoInput').value = JSON.stringify(carrinho);
     document.getElementById('checkoutForm').submit();
-}
+    }
 
 
-
-// Função chamada ao clicar em "Continuar Compra" no modal
-function continuarCompra() {
-  // Aqui você pode adicionar lógica adicional se necessário
-  // Redirecionando para a página de pagamento
-  window.location.href = 'http://localhost/Historia/Historia/Checkout.php';
-}
-
-
+    // Função chamada ao clicar em "Continuar Compra" no modal
+    function continuarCompra() {
+        // Aqui você pode adicionar lógica adicional se necessário
+        // Redirecionando para a página de pagamento
+        window.location.href = 'http://localhost:81/Historia%20dos%20Livros/checkout.php';
+    }
 </script>
+
+  
+  
 
     
 
